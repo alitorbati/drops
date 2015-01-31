@@ -1,14 +1,11 @@
 <template name="home">
 
-    <section id="song-tiles">
-
-    </section>
-
     <form class="new-song">
-        <input type="text" name="text" placeholder="" />
-        <button type="submit">Add Song</button>
+        <label for="text">Paste a Soundcloud song URL</label>
+        <input type="text" name="text" placeholder="soundcloud.com/artist/song" />
+        <!-- <button type="submit">Add Song</button> -->
     </form>
 
-    <!-- {{> player}} -->
+    {{> player}}
 
 </template>

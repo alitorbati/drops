@@ -1,8 +1,36 @@
 @orange : #ff6200;
 @gray : #4c4c4e;
 @light-gray : #ccc;
+@lighter-gray : #eee;
 
 body {
   font-family: 'Open Sans', Helvetica, sans-serif;
   color : @gray;
+}
+
+input[type="text"]{
+  display: block;
+  outline: 0;
+  border: 0;
+  height: 100px;
+  width: 100%;
+  line-height: 100px;
+  font-size: 60px;
+  color: @orange;
+}
+
+::-webkit-input-placeholder {
+   color: @lighter-gray;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: @lighter-gray;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: @lighter-gray;  
+}
+
+:-ms-input-placeholder {  
+   color: @lighter-gray;  
 }
