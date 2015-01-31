@@ -1,0 +1,30 @@
+@media screen and (min-width: 376px) {
+  body {
+  }
+}
+
+body {
+  background: @color-g0;
+  width: 100%;
+  min-width:1000px;
+}
+
+.wrapper {
+
+  &.overflow-hidden {
+    overflow: scroll;
+    width:100%;
+    height:100%;
+    position: fixed;
+  }
+}
+
+footer {
+	float:left;
+	display:block;
+	width:100%;
+
+	&.spacer {
+		padding-bottom:60px;
+	}
+}
