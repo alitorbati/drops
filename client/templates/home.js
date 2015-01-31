@@ -1,3 +1,5 @@
+var COMMENT_SPEED = 1000;
+
 Template.home.events({
 
     "submit .new-song": function (event) {
@@ -50,10 +52,10 @@ var playSound = function(currentSong) {
         },
         whileplaying : function() {
             
-            var position = Math.round(this.position /1000);
-            position = position * 1000;
-
             Session.set("currentPosition", position);
+
+            var position = Math.round(this.position /COMMENT_SPEED);
+            position = position * COMMENT_SPEED;
 
             var comments = Session.get("songComments");
 
@@ -86,8 +88,8 @@ var getComments = function(track) {
                 var obj = comments[i];
                 if(obj != undefined) {
                     var timestamp = obj.timestamp;
-                    timestamp = Math.round(timestamp/1000);
-                    timestamp = timestamp * 1000;
+                    timestamp = Math.round(timestamp/COMMENT_SPEED);
+                    timestamp = timestamp * COMMENT_SPEED;
                     commentObject[timestamp] = obj.body;
                 }
             }
