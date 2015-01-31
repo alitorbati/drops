@@ -5,7 +5,13 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
-mrt:soundcloud
+oauth
+oauth2
+service-configuration
+accounts-ui
+less
+
 iron:router
+pcel:loading
+mrt:soundcloud
+wenape:soundmanager
