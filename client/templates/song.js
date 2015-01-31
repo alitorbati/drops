@@ -78,6 +78,7 @@ Template.player.events({
     $('.player-container').addClass('hidden');
     $('input').focus();
     soundManager.stopAll();
+    Session.set("currentSong", {});
   },
 
 
