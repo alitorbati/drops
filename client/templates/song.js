@@ -1,7 +1,7 @@
 
-Template.player.helpers({
+Template.song.helpers({
 
-	currentSong: function (details, user) {
+    currentSong: function (details, user) {
     var currentSong = Session.get("currentSong");
     if(currentSong) {
       var track = currentSong.track;
@@ -54,23 +54,23 @@ Template.player.helpers({
 
 });
 
-Template.player.events({
+Template.song.events({
 
   // Pause Song
   "click #song-pause": function (event) {
 
-  	Session.set("pauseState", "pause");
+    Session.set("pauseState", "pause");
 
   },
 
   // Play Song
   "click #song-play": function (event) {
 
-  	pauseState = Session.get("pauseState");
-  	if (pauseState == "pause") {
-  		Session.set("pauseState", "play");
+    pauseState = Session.get("pauseState");
+    if (pauseState == "pause") {
+        Session.set("pauseState", "play");
       soundManager.resumeAll();
-  	}
+    }
 
   },
 
@@ -216,25 +216,25 @@ var playSound = function(currentSong) {
 }
 
 Tracker.autorun(function () {
-	var currentSong = Session.get("currentSong");
+    var currentSong = Session.get("currentSong");
   playSound(currentSong);
   
 });
 
 Tracker.autorun(function () {
 
-	var pauseState = Session.get("pauseState");
-	if (pauseState == "pause") {
-		soundManager.pauseAll();
+    var pauseState = Session.get("pauseState");
+    if (pauseState == "pause") {
+        soundManager.pauseAll();
     $('#song-pause').addClass('hide');
     $('#song-play').removeClass('hide');
-	}
+    }
 
-	if (pauseState == "play") {
-		soundManager.resumeAll();
+    if (pauseState == "play") {
+        soundManager.resumeAll();
     $('#song-pause').removeClass('hide');
     $('#song-play').addClass('hide');
-	}
+    }
 
 });
 
