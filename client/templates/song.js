@@ -73,7 +73,7 @@ Template.player.events({
   },
 
     // Scrub song
-  "click .song-close": function (event) {
+  "click .player-close": function (event) {
     $('.player-container').addClass('hidden');
     soundManager.stopAll();
   },

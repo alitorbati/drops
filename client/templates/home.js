@@ -37,6 +37,10 @@ var playSound = function(currentSong) {
 
     SC.stream(streamUrl,{
         onload : function() {
+            Session.set("currentSound", {
+                id: this.id,
+                duration: this.duration
+            });
 
             $('.player-container').removeClass('hidden');
 
