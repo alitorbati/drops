@@ -76,6 +76,7 @@ Template.player.events({
     // Scrub song
   "click .player-close": function (event) {
     $('.player-container').addClass('hidden');
+    $('input').focus();
     soundManager.stopAll();
   },
 

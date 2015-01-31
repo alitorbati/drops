@@ -9,13 +9,18 @@
 }
 
 .player-container {
-  opacity: 0.4;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   background: #fff;
+  transition: all 0.3s;
+  opacity: 1;
+  &.hidden {
+    opacity: 0;
+    top: 100px;
+  }
 }
 
 .player-info {
@@ -30,6 +35,8 @@
   top: 50px;
   left: 50px;
   margin-right: 10px;
+  background-image: url('img/x.png');
+  background-size: cover;
 }
 
 
@@ -79,6 +86,7 @@
   background:@light-gray;
 }
 .progress {
+  transition: all 0.3s;
   height: 100%;
   background: @orange;
 }

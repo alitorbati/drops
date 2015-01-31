@@ -104,3 +104,7 @@ Tracker.autorun(function () {
     var currentSong = Session.get("currentSong");
     playSound(currentSong);
 });
+
+Template.home.rendered = function () {
+  $('input').focus();
+};

@@ -1,11 +1,13 @@
 <template name="home">
-  <div class="logo"></div>
+  <div class="home-input">
+    <div class="logo"></div>
 
-    <form class="new-song">
-        <label for="text">Paste a Soundcloud song URL</label>
-        <input type="text" name="text" placeholder="soundcloud.com/artist/song" />
-        <!-- <button type="submit">Add Song</button> -->
-    </form>
+      <form class="new-song">
+          <label for="text">Paste a Soundcloud song URL</label>
+          <input type="text" name="text" placeholder="" />
+          <!-- <button type="submit">Add Song</button> -->
+      </form>
+    </div>
     
     {{> player}}
 

@@ -8,8 +8,8 @@ if (typeof Meteor.settings === 'undefined')
 
 _.defaults(Meteor.settings, {
   soundcloud: {
-    clientId: "71eb94f201e6b8df2e56c9eaa6f90fc1", 
-    secret: "bfb2d0cc2bead3376dadbb3f173b6e8f"
+    clientId: "ef0d5ca6e55350dd01f3c73c94faebd9", 
+    secret: "f65fad5d61643e9560298652bfb8bd4a"
   }
 });
 
