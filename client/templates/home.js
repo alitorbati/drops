@@ -52,7 +52,7 @@ var playSound = function(currentSong) {
         },
         whileplaying : function() {
             
-            Session.set("currentPosition", position);
+            Session.set("currentPosition", this.position);
 
             var position = Math.round(this.position /COMMENT_SPEED);
             position = position * COMMENT_SPEED;
