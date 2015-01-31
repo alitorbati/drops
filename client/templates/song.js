@@ -75,15 +75,18 @@ Template.player.events({
 
     // Scrub song
   "click .player-close": function (event) {
-    $('.player-container').addClass('hidden');
-    $('input').focus();
-    soundManager.stopAll();
-    Session.set("currentSong", {});
+    closePlayer();
   },
 
 
 });
 
+var closePlayer = function() {
+    $('.player-container').addClass('hidden');
+    $('input').focus();
+    soundManager.stopAll();
+    Session.set("currentSong", {});
+}
 
 
 Template.player.rendered = function () {
@@ -98,3 +101,13 @@ Tracker.autorun(function () {
   console.log(currentPosition);
 
 });
+
+// Spacebar acts as pause/play
+$(document).keydown(function(e) {
+  
+  if (e.keyCode == 27) {
+      e.preventDefault();
+      closePlayer();
+  }
+});
+
