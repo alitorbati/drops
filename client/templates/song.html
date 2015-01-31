@@ -1,27 +1,18 @@
 <template name="player">
+	<div class="player-container">
+		<div class="player-info clearfix">
 
-  <section id="player">
+			<div class="player-close"></div>
 
-    <div class="detail-wrapper">
-        <div class="flex-container">
-            <div class="song-details">
-                <h1>{{currentSong "title"}}<span>&nbsp;&mdash;&nbsp;{{currentSong "username" true}}</span></h1>
-            </div>
-            {{comment}}
-            <div class="song-tracker">
-                <div class="progress" style="width: {{current_position}}"></div>
-            </div>
-        </div>
-    </div>
+			<div class="player-artist">{{track.user.username}} track.user.username</div>
+			<div class="player-info-divider">/</div>
+			<div class="player-song">{{track.title}} track.title</div>
+		</div>
 
-    <div class="upvote-wrapper">
-        <a class="player-upvote"><i class="fa fa-lg fa-heart"></i></a>
-    </div>
+		<div class="player-comment">{{comment}} comment</div>
 
-    <div class="comment-wrapper">
-        <a class="player-comments"><i class="fa fa-lg fa-comment"></i></a>
-    </div>
-
-    </section>
-
+	  <div class="song-tracker">
+			<div class="progress" style="width: {{current_position}}"></div>
+	  </div>
+	</div>
 </template>
