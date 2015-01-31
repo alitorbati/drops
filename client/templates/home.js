@@ -15,7 +15,7 @@ Template.home.events({
           } else {
             track = resp;
             
-            Session.set("currentSong", track);
+            getComments(track);
 
             event.target.text.value = "";
             console.log(track);
@@ -46,18 +46,54 @@ var playSound = function(currentSong) {
 
         },
         whileplaying : function() {
-           
-          Session.set("currentPosition", this.position);
+            
+            var position = Math.round(this.position /1000);
+            position = position * 1000;
+
+            Session.set("currentPosition", position);
+
+            var comments = Session.get("songComments");
+
+            var currentComment = comments[position];
+
+            if (currentComment) {
+                Session.set("currentComment", currentComment); 
+            }
           
         }},
         function(sound) {
 
           sound.play();
           
-        }
-    );
-  }
+      }
+      );
+    }
 };
+
+var getComments = function(track) {
+    SC.get('/tracks/' + track.id + '/comments', function(resp){
+        console.log(resp);
+        if (resp.errors) {
+            console.log('song does not exist');
+        } else {
+            comments = resp;
+            var commentObject = {};
+
+            for( var i = 1; i < comments.length; i++ ){
+                var obj = comments[i];
+                if(obj != undefined) {
+                    var timestamp = obj.timestamp;
+                    timestamp = Math.round(timestamp/1000);
+                    timestamp = timestamp * 1000;
+                    commentObject[timestamp] = obj.body;
+                }
+            }
+            
+            Session.set("songComments", commentObject);
+            Session.set("currentSong", track);
+        }
+    });    
+}
 
 Tracker.autorun(function () {
     var currentSong = Session.get("currentSong");

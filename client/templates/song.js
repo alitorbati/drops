@@ -38,7 +38,10 @@ Template.player.helpers({
   },
 
   comment: function() {
-
+    var comment = Session.get("currentComment");
+    if (comment) {
+      return comment;
+    }
   },
 
 });
@@ -74,15 +77,13 @@ Template.player.events({
 
 Template.player.rendered = function () {
   Session.set("currentSong", undefined);
-  var playlistArray = Songs.find({}).fetch();
-  Session.set("playlist", playlistArray);
-  Session.set("nextSong", false);
-  Session.set("previousSong", false);
 };
 
 
 Tracker.autorun(function () {
 
   var currentPosition = Session.get("currentPosition");
+
+  console.log(currentPosition);
 
 });
