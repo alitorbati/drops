@@ -37,10 +37,9 @@ var playSound = function(currentSong) {
 
     SC.stream(streamUrl,{
         onload : function() {
-          Session.set("currentSound", {
-            id: this.id,
-            duration: this.duration
-          });
+
+            $('.player-container').removeClass('hidden');
+
         },
         onfinish : function(){
 
@@ -88,7 +87,7 @@ var getComments = function(track) {
                     commentObject[timestamp] = obj.body;
                 }
             }
-            
+
             Session.set("songComments", commentObject);
             Session.set("currentSong", track);
         }

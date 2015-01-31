@@ -72,7 +72,15 @@ Template.player.events({
     soundManager.setPosition(songId, newPosition);
   },
 
+    // Scrub song
+  "click .song-close": function (event) {
+    $('.player-container').addClass('hidden');
+    soundManager.stopAll();
+  },
+
+
 });
+
 
 
 Template.player.rendered = function () {
