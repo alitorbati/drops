@@ -6,8 +6,6 @@ Template.home.events({
 
         var text = event.target.text.value;
         var track;
-
-        console.log(text);
         
         //SC.get("/tracks/" + text, function(resp){
         SC.get('/resolve/?url=' + text, {limit: 1}, function(resp){
@@ -20,7 +18,6 @@ Template.home.events({
             getComments(track);
 
             event.target.text.value = "";
-            console.log(track);
           }
         });
         return false;
@@ -41,7 +38,6 @@ var playSound = function(currentSong) {
   
   soundManager.stopAll();
 
-  console.log(currentSong);
 
   if (currentSong != undefined) {
     
@@ -87,7 +83,6 @@ var playSound = function(currentSong) {
 
 var getComments = function(track) {
     SC.get('/tracks/' + track.id + '/comments', function(resp){
-        console.log(resp);
         if (resp.errors) {
             console.log('song does not exist');
         } else {

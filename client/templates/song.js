@@ -98,8 +98,6 @@ Tracker.autorun(function () {
 
   var currentPosition = Session.get("currentPosition");
 
-  console.log(currentPosition);
-
 });
 
 // Spacebar acts as pause/play
