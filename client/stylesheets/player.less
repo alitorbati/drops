@@ -1,6 +1,7 @@
 @orange : #ff6200;
 @gray : #4c4c4e;
 @light-gray : #ccc;
+@logo_dark : #635e51;
 
 .clearfix:after {
   content: "";
@@ -19,9 +20,11 @@
   opacity: 1;
   display: block;
   height: auto;
+
   &.hidden {
     opacity: 0;
     top: 50%;
+    z-index: -1;
   }
 }
 
