@@ -1,5 +1,13 @@
 var COMMENT_SPEED = 1000;
 
+Template.home.helpers({
+
+  currentLink: function () {
+    return Router.current().url;
+  }
+
+});
+
 Template.home.events({
 
     "submit .new-song": function (event) {
@@ -17,6 +25,8 @@ Template.home.events({
             
             getComments(track);
 
+            Router.go('home', {}, {query: 'song='+text})
+
             event.target.text.value = "";
           }
         });
@@ -24,10 +34,13 @@ Template.home.events({
     },
 
     "click .facebook-share": function (event) {
-
+        var link = Router.current().url;
+        console.log(link);
+        var href = link;
+        console.log(href);
         FB.ui({
           method: 'share',
-          href: 'www.drrrops.com',
+          href: href,
           picture: 'www.drrrops.com/drop-1024x1024.png',
         }, function(response){});
 
@@ -115,6 +128,15 @@ Template.home.rendered = function () {
     $('form.new-song').fadeIn();
     $('input').focus();
   }, 2500);
+
+  var song = Router.current().params;
+  console.log(song);
+  if(song.query) {
+    var songUrl = song.query.song;
+    console.log(songUrl);
+    $('.new-song input').val(songUrl);
+  }
+
 };
 
  window.fbAsyncInit = function() {

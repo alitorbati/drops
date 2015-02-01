@@ -76,6 +76,7 @@ Template.player.events({
     // Scrub song
   "click .player-close": function (event) {
     closePlayer();
+    Router.go('home');
   },
 
 
