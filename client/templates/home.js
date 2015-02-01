@@ -25,6 +25,15 @@ Template.home.events({
         });
         return false;
     },
+
+    "click .facebook-share": function (event) {
+
+        FB.ui({
+          method: 'share',
+          href: 'www.drrrops.com',
+        }, function(response){});
+
+    },
 });
 
 var playSound = function(currentSong) {
@@ -111,3 +120,11 @@ Template.home.rendered = function () {
     $('input').focus();
   }, 2500);
 };
+
+ window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1563858647192351',
+      version    : 'v2.1',
+      xfbml      : true
+    });
+  };
