@@ -106,5 +106,8 @@ Tracker.autorun(function () {
 });
 
 Template.home.rendered = function () {
-  $('input').focus();
+  setTimeout(function() {
+    $('form.new-song').fadeIn();
+    $('input').focus();
+  }, 2500);
 };

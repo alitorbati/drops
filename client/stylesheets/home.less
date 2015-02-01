@@ -8,13 +8,43 @@ body {
   color : @gray;
 }
 
+form.new-song {
+  display: none;
+}
+
+.social-icons {
+  position: fixed;
+  top: 25px;
+  right: 50px;
+  font-size: 24px;
+  z-index: 100000;
+  & a { color: @orange; }
+  .fa {
+
+    padding: 10px;
+    width: 20px;
+    height: 20px;
+    line-height:20px;
+    text-align: center;
+    border-radius: 20px;
+    transition: all 0.2s;
+    &:hover {
+      background: @orange;
+      color: #fff;
+    }
+  }
+}
+
 .logo {
-  width: 200px;
-  height: 100px;
+  height: 200px;
   background-size: contain;
-  background-image: url('img/logo.png');
+  background-image: url('img/drops-horizontal-noloop.gif');
   background-repeat: no-repeat;
   background-position: left bottom;
+}
+
+label {
+  color : @light-gray;
 }
 
 input[type="text"]{

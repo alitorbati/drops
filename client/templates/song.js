@@ -40,7 +40,7 @@ Template.player.helpers({
   comment: function() {
     var comment = Session.get("currentComment");
     if (comment) {
-      $('.player-comment h1').fitText(1);
+      // $('.player-comment h1').fitText(1);
       return comment;
     }
   },
