@@ -31,6 +31,7 @@ Template.home.events({
         FB.ui({
           method: 'share',
           href: 'www.drrrops.com',
+          picture: 'www.drrrops.com/drop-1024x1024.png'
         }, function(response){});
 
     },
