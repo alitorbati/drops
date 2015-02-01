@@ -15,7 +15,7 @@ Template.home.events({
 
         var text = event.target.text.value;
         var track;
-        $('.error-message').text("Loading...");
+        $('.error-message').text("");
         //SC.get("/tracks/" + text, function(resp){
         SC.get('/resolve/?url=' + text, {limit: 1}, function(resp){
           console.log(resp);
