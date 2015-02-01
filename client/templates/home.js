@@ -3,6 +3,7 @@ var COMMENT_SPEED = 1000;
 Template.home.helpers({
 
   currentLink: function () {
+    console.log(Router.current().url);
     return Router.current().url;
   }
 
@@ -23,7 +24,10 @@ Template.home.events({
           } else {
             track = resp;
             
+            console.log(text);
+            text = text.replace('/', '%2F');
             getComments(track);
+            console.log(text);
 
             Router.go('home', {}, {query: 'song='+text})
 
