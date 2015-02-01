@@ -32,14 +32,15 @@
 .player-close {
   cursor: pointer;
   float : left;
-  background:@orange;
   width: 100px;
   height: 100px;
   top: 50px;
   left: 50px;
   margin-right: 10px;
-  background-image: url('img/x.png');
-  background-size: cover;
+  background-image: url('img/x.svg');
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 
@@ -52,6 +53,7 @@
 }
 .player-artist {
   margin-right: 10px;
+  font-weight: 600;
 }
 
 .player-info-divider {
@@ -60,7 +62,7 @@
 }
 
 .player-song {
-  
+  font-weight:100;
 }
 
 .player-comment {
@@ -74,7 +76,8 @@
   font-size: 100%;
 
   h1 {
-    width: 100%;
+    width: 90%;
+    margin: auto;
     line-height:1;
     margin: 0 auto;
     display: inline-block;
@@ -86,9 +89,27 @@
   }
 }
 
-.player-comment:before {
+.player-comment:before,
+.player-comment:after {
   content : "";
+  display: block;
+  position: absolute;
+  height: 100px;
+  width: 100%;
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
+
+.player-comment:before {
+  background-image: url('img/quote_top.svg');
+  top: -100px;
+}
+.player-comment:after {
+  background-image: url('img/quote_bottom.svg');
+  bottom: -100px;
+}
+
 
 .song-tracker {
   position: absolute;
