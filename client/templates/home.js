@@ -15,23 +15,30 @@ Template.home.events({
 
         var text = event.target.text.value;
         var track;
-        
+        $('.error-message').text("Loading...");
         //SC.get("/tracks/" + text, function(resp){
         SC.get('/resolve/?url=' + text, {limit: 1}, function(resp){
           console.log(resp);
           if (resp.errors) {
-            console.log('song does not exist');
+            $('.error-message').text("That song doesn't exist");
           } else {
             track = resp;
             
-            console.log(text);
-            text = text.replace('/', '%2F');
-            getComments(track);
-            console.log(text);
+            console.log(track);
+            if (track.streamable == false) {
+              console.log('text');
+              $('.error-message').text("SoundCloud doesn't allow streaming of this song");
+            } else {
+              console.log(text);
+              text = text.replace('/', '%2F');
+              getComments(track);
+              console.log(text);
+              $('.error-message').text("");
 
-            Router.go('home', {}, {query: 'song='+text})
+              Router.go('home', {}, {query: 'song='+text})
 
-            event.target.text.value = "";
+              event.target.text.value = "";
+            }
           }
         });
         return false;
