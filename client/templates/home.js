@@ -40,7 +40,7 @@ Template.home.events({
     "click .facebook-share": function (event) {
         var link = Router.current().url;
         console.log(link);
-        var href = link;
+        var href = "www.drrrops.com" + link;
         console.log(href);
         FB.ui({
           method: 'share',
