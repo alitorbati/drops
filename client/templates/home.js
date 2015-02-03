@@ -20,25 +20,46 @@ Template.home.events({
         SC.get('/resolve/?url=' + text, {limit: 1}, function(resp){
           console.log(resp);
           if (resp.errors) {
-            $('.error-message').text("That song doesn't exist");
+            $('.error-message').text("That song or set doesn't exist");
           } else {
             track = resp;
-            
             console.log(track);
-            if (track.streamable == false) {
-              console.log('text');
-              $('.error-message').text("SoundCloud doesn't allow streaming of this song");
-            } else {
-              console.log(text);
-              text = text.replace('/', '%2F');
-              getComments(track);
-              console.log(text);
-              $('.error-message').text("");
 
-              Router.go('home', {}, {query: 'song='+text})
+            // Delete all songs
+            Meteor.call("removeAllSongs");
 
-              event.target.text.value = "";
+            if (resp.kind == 'track') {
+              if (track.streamable == false) {
+                console.log('text');
+                $('.error-message').text("SoundCloud doesn't allow streaming of this song");
+              } else {
+                
+                console.log(text);
+                text = text.replace('/', '%2F');
+
+                Session.set("currentSong", track);
+
+                console.log(text);
+                $('.error-message').text("");
+                Router.go('home', {}, {query: 'song='+text})
+                event.target.text.value = "";
+
+              }
             }
+
+            if (resp.kind == 'playlist') {
+              console.log('fuck yea');
+              console.log(resp);
+              var tracks = resp.tracks;
+              console.log(tracks);
+              for (var i = 0 ; i < tracks.length ; i++) {
+                if (track.stramable !== false) {
+                  Meteor.call("addSong", track);
+                }
+              }
+
+            }
+            
           }
         });
         return false;
@@ -105,7 +126,7 @@ var playSound = function(currentSong) {
     }
 };
 
-var getComments = function(track) {
+var getComments = function(track, callback) {
     SC.get('/tracks/' + track.id + '/comments', function(resp){
         if (resp.errors) {
             console.log('song does not exist');
@@ -124,14 +145,19 @@ var getComments = function(track) {
             }
 
             Session.set("songComments", commentObject);
-            Session.set("currentSong", track);
+            callback();
         }
     });    
 }
 
 Tracker.autorun(function () {
     var currentSong = Session.get("currentSong");
-    playSound(currentSong);
+    if (currentSong) {
+      console.log(currentSong);
+      getComments(currentSong, function() {
+        playSound(currentSong);
+      });
+    }
 });
 
 Template.home.rendered = function () {
