@@ -59,8 +59,13 @@
   text-overflow: ellipsis;
 }
 .player-artist,
-.player-info-divider,
 .player-song {
+  display: block;
+  margin-right: 10px;
+  @media (min-width:768px) {display: inline-block;}
+}
+
+.player-info-divider {
   margin-right: 10px;
 }
 
@@ -72,7 +77,13 @@
   font-weight:100;
 }
 
-.player-info-divider { color: @color-orange01; }
+.player-info-divider {
+  display: none;
+  @media (min-width:768px) {
+    display: inline;
+    color: @color-orange01;
+  }
+}
 
 .player-comment {
   position: absolute;
@@ -93,7 +104,8 @@
 
 .player-controls {
   position: absolute;
-  bottom: 60px;
+  bottom: 90px;
+  @media (min-width:768px) { bottom: 60px; }
 }
 
 .player-control {
