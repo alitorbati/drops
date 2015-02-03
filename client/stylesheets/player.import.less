@@ -4,7 +4,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: @color-gray01;
+  background: @color-g0;
   transition: all 0.3s;
   opacity: 1;
   display: block;
@@ -29,6 +29,10 @@
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: top left;
+  .transition(all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55));
+  &:hover {
+    .scale(1.2);
+  }
 }
 
 .social-icons {
@@ -37,12 +41,13 @@
   & .twitter-share {
     width: 40px;
     height: 40px;
-    background: #fff;
+    background: @color-gray00;
     color : @color-orange01;
     text-align: center;
     line-height: 40px;
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 0;
+    .transition(all 0.2s ease-in);
     &:hover {
       background: @color-orange01;
       color: #fff;
@@ -113,15 +118,19 @@
   height: 40px;
   line-height: 40px;
   text-align: center;
-  background: #fff;
+  background: @color-gray02;
   color: @color-gray03;
   float: left;
   margin-right: 10px;
   cursor: pointer;
-  &:hover { color: @color-orange01; }
+  .transition(all 0.2s ease-in);
+  &:hover { 
+    color: @color-gray00; 
+    background-color: @color-orange01; 
+  }
   &.disabled {
-    background: @color-gray02;
-    color: @color-gray03;
+    background: @color-gray01;
+    color: @color-gray02;
     pointer-events: none;
     cursor: default;
   }

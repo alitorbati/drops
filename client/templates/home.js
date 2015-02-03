@@ -7,17 +7,6 @@ Template.home.helpers({
     return Router.current().url;
   },
 
-  twitter_url: function() {
-    var song = Session.get('currentSong');
-    if (song) {
-      var route = Router.current().url;
-      console.log(route);
-      return "https://twitter.com/home?status=" + route;
-    } else {
-      return "https://twitter.com/home?status=@DRRROPSmusic%0ADamn%20son!%20Where'd%20you%20find%20this?!%0Awww.drrrops.com"
-    }
-  }
-
 });
 
 Template.home.events({
