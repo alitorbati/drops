@@ -193,7 +193,6 @@ Template.home.rendered = function () {
     tid = setTimeout(search, 250)
   })
   $('body').on('click', '.result', goToSong);
-  $(window).addEventListener('popstate', closePlayer());
 };
 
 
