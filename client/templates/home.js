@@ -192,8 +192,8 @@ Template.home.rendered = function () {
     clearTimeout(tid)
     tid = setTimeout(search, 250)
   })
-  $('body').on('click', '.result', goToSong)
-
+  $('body').on('click', '.result', goToSong);
+  $(window).addEventListener('popstate', closePlayer());
 };
 
 
@@ -218,7 +218,7 @@ function search() {
       var track = tracks[i];
       console.log(track)
       var $li = $('<li class="result-li">' +
-                    '<a class="result" data-url="' + track.permalink_url + '">' + 
+                    '<a class="result clearfix" data-url="' + track.permalink_url + '">' + 
                       track.title + 
                       '<span class="comment_count">' + track.comment_count + '</span>' +
                     '</a>' +

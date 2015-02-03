@@ -68,33 +68,22 @@ input[type="text"]{
 
 .result-li {
   border-bottom: 1px solid @color-orange01;
-  &:hover { background: #fff; }
+  &:hover { background: @color-gray01; color: @color-orange01; }
 }
 
 .result {
-  padding: 20px 0;
+  padding: 20px;
   display: block;
   cursor: pointer;
   position: relative;
 }
 
 .comment_count {
-  position: absolute;
-  right: 0;
+  color: @color-orange01;
+  float: right;
+  display: block;
+  text-align: right;
 }
-
-#results {
-  transition : all 0.3s;
-}
-
-.empty_list {
-  opacity: 0;
-}
-
-.unempty_list {
-  // opacity: 1;
-}
-
 
 .error-message {
   padding: 20px 0;
