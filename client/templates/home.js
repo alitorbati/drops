@@ -124,10 +124,10 @@ Tracker.autorun(function () {
 });
 
 Template.home.rendered = function () {
-  setTimeout(function() {
-    $('form.new-song').fadeIn();
-    $('input').focus();
-  }, 2500);
+  $('input').focus();
+  // setTimeout(function() {
+  //   $('form.new-song').fadeIn();
+  // }, 2500);
 
   var song = Router.current().params;
   console.log(song);
