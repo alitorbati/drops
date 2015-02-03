@@ -26,11 +26,11 @@ Template.player.helpers({
     if (currentPosition && currentSound) {
       var songDuration = currentSound.duration;
       var width = currentPosition/songDuration * 100;
-
       if (isNaN(width)) {
         return '0%';
       } else {
-        return currentPosition/songDuration * 100 + '%';
+        console.log(width);
+        return width + '%';
       }
     }else {
       return '0%';
