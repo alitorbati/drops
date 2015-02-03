@@ -70,19 +70,6 @@ Template.home.events({
         });
         return false;
     },
-
-    "click .facebook-share": function (event) {
-        var link = Router.current().url;
-        console.log(link);
-        var href = "www.drrrops.com" + link;
-        console.log(href);
-        FB.ui({
-          method: 'share',
-          href: 'www.drrrops.com',
-          picture: 'www.drrrops.com/drop-1024x1024.png',
-        }, function(response){});
-
-    },
 });
 
 var playSound = function(currentSong) {

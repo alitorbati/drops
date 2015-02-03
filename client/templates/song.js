@@ -50,7 +50,8 @@ Template.player.helpers({
     if (song) {
       var route = Router.current().url;
       console.log(route);
-      return "https://twitter.com/home?status=@DRRROPSmusic%0ADamn%20son!%20Where'd%20you%20find%20this?!%0" + route;
+      //return "https://twitter.com/home?status=@DRRROPSmusic%0ADamn%20son!%20Where'd%20you%20find%20this?!%0" + route;
+      return "https://twitter.com/home?status=@DRRROPSmusic%0ADamn%20son!%20Where'd%20you%20find%20this?!%0Awww.drrrops.com"
     } else {
       return "https://twitter.com/home?status=@DRRROPSmusic%0ADamn%20son!%20Where'd%20you%20find%20this?!%0Awww.drrrops.com"
     }
@@ -127,6 +128,19 @@ Template.player.events({
       Session.set("pauseState", "play");
       var songArray = Session.set("currentSong", previousSong);
     }
+
+  },
+
+  "click .facebook-share": function (event) {
+      var link = Router.current().url;
+      console.log(link);
+      var href = link;
+      console.log(href);
+      FB.ui({
+        method: 'share',
+        href: 'www.drrrops.com',
+        picture: 'www.drrrops.com/drop-1024x1024.png',
+      }, function(response){});
 
   },
 
