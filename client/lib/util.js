@@ -24,9 +24,11 @@ closePlayer = function() {
 };
 
 
-// Spacebar acts as pause/play
+// // Spacebar acts as pause/play
 $(document).keydown(function(e) {
-    if (e.target.type == 'textarea' || e.target.type == 'input') {
+    // console.log(e.target.type)
+
+    if (e.target.type == 'text') {
     } else {
         if (e.keyCode == 32) {
             e.preventDefault();

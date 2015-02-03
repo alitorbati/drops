@@ -187,7 +187,15 @@ Template.home.rendered = function () {
     $('.new-song input').val(songUrl);
   }
 
+  var tid;
+  $('#query').keyup(function() {
+    clearTimeout(tid)
+    tid = setTimeout(search, 250)
+  })
+  $('body').on('click', '.result', goToSong)
+
 };
+
 
 window.fbAsyncInit = function() {
   FB.init({
@@ -196,3 +204,33 @@ window.fbAsyncInit = function() {
     xfbml      : true
   });
 };
+
+function search() {
+  $("#results").html('');
+  if ( !$("#query").val()) return
+  SC.get('/tracks', { q: $('#query').val(), limit: 10 }, function(tracks) {
+
+    tracks.sort(function(a,b){
+      return a.comment_count < b.comment_count ? -1 : 1
+    })
+
+    for (var i = tracks.length - 1; i >= 0; i--) {
+      var track = tracks[i];
+      console.log(track)
+      var $li = $('<li class="result-li">' +
+                    '<a class="result" data-url="' + track.permalink_url + '">' + 
+                      track.title + 
+                      '<span class="comment_count">' + track.comment_count + '</span>' +
+                    '</a>' +
+                  '</li>');
+      $("#results").append($li);
+    };
+  });
+}
+
+function goToSong() {
+  var url = $(this).data('url');
+  console.log(url)
+  $('.new-song input').val(url)
+  $('.new-song').submit()
+}

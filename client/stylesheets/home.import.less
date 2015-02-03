@@ -15,6 +15,10 @@ html {
   clear: both;
 }
 
+::selection {
+  background: @color-orange01;
+  color: #fff;
+}
 
 .home-input {
   margin: 100px 20px auto 20px;
@@ -62,27 +66,31 @@ input[type="text"]{
 ::-moz-placeholder          { color: @color-gray02; }
 :-ms-input-placeholder      { color: @color-gray02; }
 
+.result-li {
+  border-bottom: 1px solid @color-orange01;
+  &:hover { background: #fff; }
+}
 
-// .social-icons {
-//   position: fixed;
-//   top: 32px;
-//   right: 50px;
-//   font-size: 24px;
-//   z-index: 100000;
-//   & a { color: @color-orange01; text-decoration: none;}
-//   .fa {
-//     padding: 10px;
-//     display: inline-block;
-//     width: 20px;
-//     height: 20px;
-//     line-height:20px;
-//     text-align: center;
-//     &:hover {
-//       background: @color-orange01;
-//       color: #fff;
-//     }
-//   }
-// }
+.result {
+  padding: 20px 0;
+  display: block;
+  cursor: pointer;
+  position: relative;
+}
 
+.comment_count {
+  position: absolute;
+  right: 0;
+}
 
+#results {
+  transition : all 0.3s;
+}
 
+.empty_list {
+  opacity: 0;
+}
+
+.unempty_list {
+  // opacity: 1;
+}
