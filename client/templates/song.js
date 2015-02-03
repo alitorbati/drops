@@ -76,7 +76,6 @@ Template.player.events({
     // Scrub song
   "click .player-close": function (event) {
     closePlayer();
-    Router.go('home');
   },
 
 
@@ -89,7 +88,6 @@ var closePlayer = function() {
     Session.set("currentSong", {});
     Session.set("currentPosition", "0");
 }
-
 
 Template.player.rendered = function () {
   Session.set("currentSong", undefined);

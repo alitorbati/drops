@@ -1,10 +1,15 @@
 <template name="home">
 
+  <div class="social-icons">
+    <a class="facebook-share" href=""><i class="fa fa-facebook"></i></a>
+    <a class="twitter-share" target="_blank" href="{{ twitter_url }}"><i class="fa fa-twitter"></i></a>
+  </div>
+
   <div class="home-input">
     <div class="logo">DRRROPS</div>
 
     <form class="new-song" autocomplete="off">
-      <input type="text" name="text" placeholder=" Paste a SoundCloud Song URL"/>
+      <input type="text" name="text" placeholder="Paste a SoundCloud Song or Set URL"/>
     </form>
 
     <p class="error-message"></p>

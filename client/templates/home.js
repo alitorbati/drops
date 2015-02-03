@@ -5,6 +5,17 @@ Template.home.helpers({
   currentLink: function () {
     console.log(Router.current().url);
     return Router.current().url;
+  },
+
+  twitter_url: function() {
+    var song = Session.get('currentSong');
+    if (song) {
+      var route = Router.current().url;
+      console.log(route);
+      return "https://twitter.com/home?status=" + route;
+    } else {
+      return "https://twitter.com/home?status=@DRRROPSmusic%0ADamn%20son!%20Where'd%20you%20find%20this?!%0Awww.drrrops.com"
+    }
   }
 
 });
@@ -33,13 +44,10 @@ Template.home.events({
                 console.log('text');
                 $('.error-message').text("SoundCloud doesn't allow streaming of this song");
               } else {
-                
-                console.log(text);
-                text = text.replace('/', '%2F');
 
                 Session.set("currentSong", track);
 
-                console.log(text);
+                text = text.replace('/', '%2F');
                 $('.error-message').text("");
                 Router.go('home', {}, {query: 'song='+text})
                 event.target.text.value = "";
@@ -53,10 +61,19 @@ Template.home.events({
               var tracks = resp.tracks;
               console.log(tracks);
               for (var i = 0 ; i < tracks.length ; i++) {
-                if (track.stramable !== false) {
-                  Meteor.call("addSong", track);
+                if (tracks[i].streamable !== false) {
+                  Meteor.call("addSong", tracks[i]);
                 }
               }
+              var firstSong = Songs.findOne();
+              console.log(firstSong);
+              Session.set("currentSong", firstSong);
+
+              console.log(text);
+              text = text.replace('/', '%2F');
+              $('.error-message').text("");
+              Router.go('home', {}, {query: 'song='+text})
+              event.target.text.value = "";
 
             }
             
@@ -99,7 +116,13 @@ var playSound = function(currentSong) {
 
         },
         onfinish : function(){
-
+          var nextSong = Session.get("nextSong");
+          console.log(nextSong);
+          if (nextSong !== false) {
+            var songArray = Session.set("currentSong", nextSong);
+          } else {
+            closePlayer();
+          }
         },
         whileplaying : function() {
             
@@ -115,15 +138,35 @@ var playSound = function(currentSong) {
             if (currentComment) {
                 Session.set("currentComment", currentComment); 
             }
-          
+
         }},
         function(sound) {
 
           sound.play();
           
-      }
-      );
-    }
+          var songArray = Songs.find({}).fetch();
+          console.log(songArray);
+
+          for (var i = 0; i < songArray.length; i++){
+            console.log(songArray[i]._id);
+            console.log(currentSong._id);
+            if (songArray[i]._id == currentSong._id) {
+              
+              if (i+1 < songArray.length) {
+                Session.set("nextSong", songArray[i+1]);
+              } else {
+                Session.set("nextSong", false);
+              }
+
+              if (i-1 >= 0) {
+                Session.set("previousSong", songArray[i-1]);
+              } else {
+                Session.set("previousSong", false);
+              }
+            }
+        } 
+    });
+  }
 };
 
 var getComments = function(track, callback) {
@@ -143,6 +186,7 @@ var getComments = function(track, callback) {
                     commentObject[timestamp] = obj.body;
                 }
             }
+            commentObject[0] = "DRRROPS";
 
             Session.set("songComments", commentObject);
             callback();
@@ -176,10 +220,10 @@ Template.home.rendered = function () {
 
 };
 
- window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1563858647192351',
-      version    : 'v2.1',
-      xfbml      : true
-    });
-  };
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1563858647192351',
+    version    : 'v2.1',
+    xfbml      : true
+  });
+};

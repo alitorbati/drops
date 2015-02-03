@@ -47,6 +47,14 @@ showModal = function(songId) {
 
 };
 
+closePlayer = function() {
+    $('.player-container').addClass('hidden');
+    $('input').focus();
+    soundManager.stopAll();
+    Session.set("currentSong", {});
+    Router.go('home');
+};
+
 
 // Spacebar acts as pause/play
 $(document).keydown(function(e) {
