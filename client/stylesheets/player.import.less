@@ -31,6 +31,25 @@
   background-position: top left;
 }
 
+.social-icons {
+  float: right;
+  & .facebook-share,
+  & .twitter-share {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    color : @color-orange01;
+    text-align: center;
+    line-height: 40px;
+    display: inline-block;
+    margin-left: 10px;
+    &:hover {
+      background: @color-orange01;
+      color: #fff;
+    }
+  }
+}
+
 .song-info {
   position: absolute;
   bottom: 23px;
