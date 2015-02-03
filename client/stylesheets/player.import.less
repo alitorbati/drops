@@ -1,92 +1,131 @@
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 .player-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background: #fff;
+  background: @color-gray01;
   transition: all 0.3s;
   opacity: 1;
   display: block;
   height: auto;
+  z-index: 1;
+  padding: 20px;
 
   &.hidden {
     opacity: 0;
-    top: 50%;
     z-index: -1;
+    transform: scale(0.7,0.7);
+
   }
-}
-
-.player-info {
-
 }
 
 .player-close {
   cursor: pointer;
   float : left;
-  width: 100px;
-  height: 100px;
-  top: 50px;
-  left: 50px;
-  margin-right: 10px;
+  width: 40px;
+  height: 40px;
   background-image: url('img/x.svg');
-  background-size: 50%;
+  background-size: 100%;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: top left;
 }
 
+.social-icons {
+  float: right;
+  & .facebook-share,
+  & .twitter-share {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    color : @color-orange01;
+    text-align: center;
+    line-height: 40px;
+    display: inline-block;
+    margin-left: 10px;
+    &:hover {
+      background: @color-orange01;
+      color: #fff;
+    }
+  }
+}
 
+.song-info {
+  position: absolute;
+  bottom: 23px;
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .player-artist,
 .player-info-divider,
 .player-song {
-  height: 100px;
-  line-height: 100px;
-  float:left;
-}
-.player-artist {
   margin-right: 10px;
-  font-weight: 600;
 }
 
-.player-info-divider {
-  margin-right: 10px;
-  color: @orange;
+.player-artist {
+  font-weight: 600;
 }
 
 .player-song {
   font-weight:100;
 }
 
+.player-info-divider { color: @color-orange01; }
+
 .player-comment {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   text-align: center;
-  width: 100%;
   margin: 0 auto;
   font-size: 65px;
-  padding: 0 50px;
-  box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
+  left: 20px;
+  right: 20px;
+  @media (min-width:768px) {
+    left: 50px;
+    right: 50px;
+  }
 }
 
+.player-controls {
+  position: absolute;
+  bottom: 60px;
+}
+
+.player-control {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #fff;
+  color: @color-gray03;
+  float: left;
+  margin-right: 10px;
+  cursor: pointer;
+  &:hover { color: @color-orange01; }
+  &.disabled {
+    background: @color-gray02;
+    color: @color-gray03;
+    pointer-events: none;
+    cursor: default;
+  }
+}
 
 .song-tracker {
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
   height: 10px;
-  width: 100%;
-  background:@light-gray;
+  background:@color-gray02;
 }
+
 .progress {
   transition: all 0.3s;
   height: 100%;
-  background: @orange;
+  background: @color-orange01;
 }

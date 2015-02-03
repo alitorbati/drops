@@ -87,6 +87,7 @@ var closePlayer = function() {
     $('input').focus();
     soundManager.stopAll();
     Session.set("currentSong", {});
+    Session.set("currentPosition", "0");
 }
 
 

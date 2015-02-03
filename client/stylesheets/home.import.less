@@ -1,68 +1,76 @@
 body {
   font-family: 'Open Sans', Helvetica, sans-serif;
-  color : @logo_dark;
+  color : @main-text-color;
+  background: @color-gray01;
 }
 
-form.new-song {
-  display: none;
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-.social-icons {
-  position: fixed;
-  top: 32px;
-  right: 50px;
-  font-size: 24px;
-  z-index: 100000;
-  & a { color: @orange; text-decoration: none;}
-  .fa {
-    padding: 10px;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    line-height:20px;
-    text-align: center;
-    &:hover {
-      background: @orange;
-      color: #fff;
-    }
+
+.home-input {
+  margin: 100px 20px auto 20px;
+  @media (min-width:768px) {
+    margin: 100px;
   }
 }
 
 .logo {
-  height: 200px;
-  background-size: contain;
-  background-image: url('img/drrrops-loop.gif');
-  background-repeat: no-repeat;
-  background-position: left bottom;
+  color: @color-orange01;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  @media (min-width:768px) {
+    text-align: left;
+    font-size: 40px;
+  }
 }
 
 input[type="text"]{
   display: block;
   outline: 0;
   border: 0;
-  height: 100px;
+  line-height: 50px;
   width: 100%;
-  line-height: 100px;
-  font-size: 40px;
-  color: @orange;
+  color: @color-orange01;
+  background: transparent;
+  border-bottom: 2px solid @color-gray02;
+  font-size: 20px;
+  @media (min-width:768px) {
+    font-size: 40px;
+    line-height: 80px;
+  }
 }
 
-::-webkit-input-placeholder {
-   color: @lighter-gray;
-}
+::-webkit-input-placeholder { color: @color-gray02; }
+:-moz-placeholder           { color: @color-gray02; }
+::-moz-placeholder          { color: @color-gray02; }
+:-ms-input-placeholder      { color: @color-gray02; }
 
-:-moz-placeholder { /* Firefox 18- */
-   color: @lighter-gray;  
-}
 
-::-moz-placeholder {  /* Firefox 19+ */
-   color: @lighter-gray;  
-}
+// .social-icons {
+//   position: fixed;
+//   top: 32px;
+//   right: 50px;
+//   font-size: 24px;
+//   z-index: 100000;
+//   & a { color: @color-orange01; text-decoration: none;}
+//   .fa {
+//     padding: 10px;
+//     display: inline-block;
+//     width: 20px;
+//     height: 20px;
+//     line-height:20px;
+//     text-align: center;
+//     &:hover {
+//       background: @color-orange01;
+//       color: #fff;
+//     }
+//   }
+// }
 
-:-ms-input-placeholder {  
-   color: @lighter-gray;  
-}
 
-.home-input {
-  padding: 100px;
-}
+
