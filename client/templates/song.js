@@ -153,3 +153,27 @@ Tracker.autorun(function () {
 
 });
 
+Tracker.autorun(function () {
+
+  var nextSong = Session.get("nextSong")
+
+  if (nextSong == false) {
+    $('.player-control.next').addClass('disabled');
+  } else {
+    $('.player-control.next').removeClass('disabled');
+  }
+
+});
+
+Tracker.autorun(function () {
+
+  var previousSong = Session.get("previousSong")
+
+  if (previousSong == false) {
+    $('.player-control.previous').addClass('disabled');
+  } else {
+    $('.player-control.previous').removeClass('disabled');
+  }
+
+});
+
