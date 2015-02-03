@@ -117,7 +117,6 @@ var playSound = function(currentSong) {
         },
         onfinish : function(){
           var nextSong = Session.get("nextSong");
-          console.log(nextSong);
           if (nextSong !== false) {
             var songArray = Session.set("currentSong", nextSong);
           } else {
@@ -143,13 +142,11 @@ var playSound = function(currentSong) {
         function(sound) {
 
           sound.play();
-          
+          Session.set("pauseState", "play");
+
           var songArray = Songs.find({}).fetch();
-          console.log(songArray);
 
           for (var i = 0; i < songArray.length; i++){
-            console.log(songArray[i]._id);
-            console.log(currentSong._id);
             if (songArray[i]._id == currentSong._id) {
               
               if (i+1 < songArray.length) {
@@ -172,7 +169,6 @@ var playSound = function(currentSong) {
 var getComments = function(track, callback) {
     SC.get('/tracks/' + track.id + '/comments', function(resp){
         if (resp.errors) {
-            console.log('song does not exist');
         } else {
             comments = resp;
             var commentObject = {};
@@ -197,7 +193,6 @@ var getComments = function(track, callback) {
 Tracker.autorun(function () {
     var currentSong = Session.get("currentSong");
     if (currentSong) {
-      console.log(currentSong);
       getComments(currentSong, function() {
         playSound(currentSong);
       });
@@ -211,10 +206,8 @@ Template.home.rendered = function () {
   // }, 2500);
 
   var song = Router.current().params;
-  console.log(song);
   if(song.query) {
     var songUrl = song.query.song;
-    console.log(songUrl);
     $('.new-song input').val(songUrl);
   }
 

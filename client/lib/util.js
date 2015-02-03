@@ -15,38 +15,6 @@ Number.prototype.toHHMMSS = function () {
     }
 };
 
-
-hideModal = function() {
-    $('#modal-comments').addClass('hidden');
-    $('#modal-overlay').addClass('hidden');
-    $('#modal').addClass('hidden');
-    $('.player-comments').removeClass('open');
-    Session.set("isModalOpen", false);
-
-    // clear comment form 
-    $('#add-comment textarea').val("");
-
-    var route = Session.get("previousRoute");
-    //Router.go(route);
-    // TODO: change routing to include the sub
-    Router.go('home');
-};
-
-showModal = function(songId) {
-    
-    var route = Router.current();
-    Session.set("previousRoute", route.route._path);
-    Session.set("isModalOpen", true);
-
-    Router.go('/songs/'+ songId);
-
-    $('#modal').removeClass('hidden');
-    $('#modal-comments').removeClass('hidden');
-    $('#modal-overlay').removeClass('hidden');
-    $('.player-comments').addClass('open');
-
-};
-
 closePlayer = function() {
     $('.player-container').addClass('hidden');
     $('input').focus();
@@ -71,4 +39,14 @@ $(document).keydown(function(e) {
             }
         }
     }
+});
+
+
+// Spacebar acts as pause/play
+$(document).keydown(function(e) {
+  
+  if (e.keyCode == 27) {
+      e.preventDefault();
+      closePlayer();
+  }
 });

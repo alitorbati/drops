@@ -79,6 +79,46 @@ Template.player.events({
   },
 
 
+  // Pause Song
+  "click .player-control.pause": function (event) {
+
+    Session.set("pauseState", "pause");
+
+  },
+
+  // Play Song
+  "click .player-control.play": function (event) {
+
+    pauseState = Session.get("pauseState");
+    if (pauseState == "pause") {
+      Session.set("pauseState", "play");
+      soundManager.resumeAll();
+    }
+
+  },
+
+  // Play Next Song
+  "click .player-control.next": function (event) {
+
+    var nextSong = Session.get("nextSong");
+    if (nextSong !== false) {
+      Session.set("pauseState", "play");
+      var songArray = Session.set("currentSong", nextSong);
+    }
+
+  },
+
+  // Play Previous Song
+  "click .player-control.previous": function (event) {
+
+    var previousSong = Session.get("previousSong");
+    if (previousSong !== false) {
+      Session.set("pauseState", "play");
+      var songArray = Session.set("currentSong", previousSong);
+    }
+
+  },
+
 });
 
 var closePlayer = function() {
@@ -87,6 +127,7 @@ var closePlayer = function() {
     soundManager.stopAll();
     Session.set("currentSong", {});
     Session.set("currentPosition", "0");
+    Router.go('home');
 }
 
 Template.player.rendered = function () {
@@ -94,18 +135,21 @@ Template.player.rendered = function () {
 };
 
 
+
 Tracker.autorun(function () {
 
-  var currentPosition = Session.get("currentPosition");
-
-});
-
-// Spacebar acts as pause/play
-$(document).keydown(function(e) {
-  
-  if (e.keyCode == 27) {
-      e.preventDefault();
-      closePlayer();
+  var pauseState = Session.get("pauseState");
+  if (pauseState == "pause") {
+    soundManager.pauseAll();
+    $('.player-control.play').removeClass('hide');
+    $('.player-control.pause').addClass('hide');
   }
+
+  if (pauseState == "play") {
+    soundManager.resumeAll();
+    $('.player-control.play').addClass('hide');
+    $('.player-control.pause').removeClass('hide');
+  }
+
 });
 
