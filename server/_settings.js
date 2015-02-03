@@ -10,6 +10,11 @@ _.defaults(Meteor.settings, {
   soundcloud: {
     clientId: "ef0d5ca6e55350dd01f3c73c94faebd9", 
     secret: "f65fad5d61643e9560298652bfb8bd4a"
+  },
+  public: {
+    ga: {
+      account: 'UA-59286766-1',
+    }
   }
 });
 
