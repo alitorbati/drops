@@ -189,19 +189,47 @@ Template.home.rendered = function () {
   if(song.query) {
     var songUrl = song.query.song;
     $('.new-song input').val(songUrl);
+    //$('.new-song').submit()
   }
 
   var tid;
-  $('#query').keyup(function() {
+  $('#query').keyup(function(e) {
     clearTimeout(tid);
     tid = setTimeout(search, 200);
     $('.error-message').addClass('hide');
     $('#results').removeClass('hide');
-  })
-  $('body').on('click', '.result', goToSong);
-  window.addEventListener('popstate',closePlayer)
-};
+  });
 
+  $('#query').keydown(function(e) {
+    if (e.keyCode == 40) {
+      console.log('test');
+      var results = $('.result-li');
+      if (results.length) {
+        this.blur();
+        results[0].firstElementChild.focus();
+      }
+    }
+  });
+
+  $(document).keydown( function(e) {
+    if (e.keyCode == 40) {
+        var focusedResult = $(".result:focus");
+        console.log(focusedResult);
+        if (focusedResult.length > 0) {
+          $(".result:focus").closest('li').next().focus();   
+        }
+    }
+
+    // Up key
+    if (e.keyCode == 38) {      
+        $(".result:focus").closest('li').prev().focus();   
+    }
+  });
+
+  $('body').on('click', '.result', goToSong);
+    window.addEventListener('popstate',closePlayer)
+  };
+ 
 
 window.fbAsyncInit = function() {
   FB.init({
@@ -222,7 +250,6 @@ function search() {
 
     for (var i = tracks.length - 1; i >= 0; i--) {
       var track = tracks[i];
-      console.log(track)
       if (track.streamable != false) {
         var $li = $('<li class="result-li">' +
                     '<a class="result clearfix" data-url="' + track.permalink_url + '">' + 

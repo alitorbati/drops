@@ -53,7 +53,7 @@ input[type="text"]{
   outline: 0;
   border: 0;
   line-height: 50px;
-  padding-left:20px;
+  padding:0 10px;
   width: ~'calc(100% - 20px)';
   color: @color-orange01;
   background: transparent;
@@ -68,16 +68,23 @@ input[type="text"]{
 .placeholder(@color-gray02);
 
 .result-li {
-  border-bottom: 1px solid @color-orange01;
-  &:hover { background: @color-gray01; color: @color-orange01; }
+  border-bottom: 2px solid @color-gray01;
 }
 
 .result {
-  padding: 20px;
+  padding: 20px 10px;
   display: block;
   cursor: pointer;
   position: relative;
-
+  &:hover,
+  &:active,
+  &:focus {
+    background: @color-gray01; 
+    color: @color-orange01; 
+    a {
+      font-weight: normal;
+    }
+  }
   .artist {
     padding-left:5px;
     font-size:12px;
@@ -87,9 +94,9 @@ input[type="text"]{
 
 .comment_count {
   color: @color-orange01;
-  font-size:12px;
+  font-size:14px;
   float: right;
-  font-weight:bold;
+  font-weight:normal;
   text-align: right;
 
   i {
@@ -101,8 +108,8 @@ input[type="text"]{
 .error-message {
   padding: 20px 0;
   background: @color-gray01;
-  color: @color-orange01;
-  border-bottom: 1px solid @color-orange01;
+  color: @color-gray04;
+  border-bottom: 1px solid @color-gray01;
   text-align: center;
   display: block;
 }
