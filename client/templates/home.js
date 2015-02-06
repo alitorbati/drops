@@ -20,7 +20,9 @@ Template.home.events({
         SC.get('/resolve/?url=' + text, {limit: 1}, function(resp){
           console.log(resp);
           if (resp.errors) {
-            $('.error-message').text("That song or set doesn't exist");
+            $('.error-message').text("That link does not work, please choose a song");
+            $('.error-message').removeClass('hide');
+            $('#results').addClass('hide');
           } else {
             track = resp;
             console.log(track);
@@ -32,6 +34,8 @@ Template.home.events({
               if (track.streamable == false) {
                 console.log('text');
                 $('.error-message').text("SoundCloud doesn't allow streaming of this song");
+                $('.error-message').removeClass('hide');
+                $('#results').addClass('hide');
               } else {
 
                 Session.set("currentSong", track);
@@ -189,8 +193,10 @@ Template.home.rendered = function () {
 
   var tid;
   $('#query').keyup(function() {
-    clearTimeout(tid)
-    tid = setTimeout(search, 250)
+    clearTimeout(tid);
+    tid = setTimeout(search, 200);
+    $('.error-message').addClass('hide');
+    $('#results').removeClass('hide');
   })
   $('body').on('click', '.result', goToSong);
   window.addEventListener('popstate',closePlayer)
