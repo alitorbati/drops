@@ -32,6 +32,9 @@ html {
   display:none;
 }
 
+#results {
+  width:100%;
+}
 
 .logo {
   height: 200px;
@@ -51,7 +54,7 @@ input[type="text"]{
   border: 0;
   line-height: 50px;
   padding-left:20px;
-  width: 100%;
+  width: ~'calc(100% - 20px)';
   color: @color-orange01;
   background: transparent;
   border-bottom: 2px solid @color-gray01;
