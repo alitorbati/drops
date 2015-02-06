@@ -217,13 +217,15 @@ function search() {
     for (var i = tracks.length - 1; i >= 0; i--) {
       var track = tracks[i];
       console.log(track)
-      var $li = $('<li class="result-li">' +
+      if (track.streamable != false) {
+        var $li = $('<li class="result-li">' +
                     '<a class="result clearfix" data-url="' + track.permalink_url + '">' + 
-                      track.title + 
-                      '<span class="comment_count">' + track.comment_count + '</span>' +
+                      track.title + '<span class="artist"> ' + track.user.username + '</span>' +
+                      '<span class="comment_count"> <i class="fa fa-comment"></i>' + track.comment_count + '</span>' +
                     '</a>' +
                   '</li>');
-      $("#results").append($li);
+        $("#results").append($li);
+      }
     };
   });
 }
