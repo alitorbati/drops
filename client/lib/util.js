@@ -26,7 +26,6 @@ closePlayer = function() {
 
 // // Spacebar acts as pause/play
 $(document).keydown(function(e) {
-    // console.log(e.target.type)
 
     if (e.target.type == 'text') {
     } else {

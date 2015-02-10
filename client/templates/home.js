@@ -3,7 +3,6 @@ var COMMENT_SPEED = 1000;
 Template.home.helpers({
 
   currentLink: function () {
-    console.log(Router.current().url);
     return Router.current().url;
   },
 
@@ -18,21 +17,18 @@ Template.home.events({
         $('.error-message').text("");
         //SC.get("/tracks/" + text, function(resp){
         SC.get('/resolve/?url=' + text, {limit: 1}, function(resp){
-          console.log(resp);
           if (resp.errors) {
             $('.error-message').text("That link does not work, please choose a song");
             $('.error-message').removeClass('hide');
             $('#results').addClass('hide');
           } else {
             track = resp;
-            console.log(track);
 
             // Delete all songs
             Meteor.call("removeAllSongs");
 
             if (resp.kind == 'track') {
               if (track.streamable == false) {
-                console.log('text');
                 $('.error-message').text("SoundCloud doesn't allow streaming of this song");
                 $('.error-message').removeClass('hide');
                 $('#results').addClass('hide');
@@ -49,20 +45,15 @@ Template.home.events({
             }
 
             if (resp.kind == 'playlist') {
-              console.log('fuck yea');
-              console.log(resp);
               var tracks = resp.tracks;
-              console.log(tracks);
               for (var i = 0 ; i < tracks.length ; i++) {
                 if (tracks[i].streamable !== false) {
                   Meteor.call("addSong", tracks[i]);
                 }
               }
               var firstSong = Songs.findOne();
-              console.log(firstSong);
               Session.set("currentSong", firstSong);
 
-              console.log(text);
               text = text.replace('/', '%2F');
               $('.error-message').text("");
               Router.go('home', {}, {query: 'song='+text})
@@ -202,7 +193,6 @@ Template.home.rendered = function () {
 
   $('#query').keydown(function(e) {
     if (e.keyCode == 40) {
-      console.log('test');
       var results = $('.result-li');
       if (results.length) {
         this.blur();
@@ -214,7 +204,6 @@ Template.home.rendered = function () {
   $(document).keydown( function(e) {
     if (e.keyCode == 40) {
         var focusedResult = $(".result:focus");
-        console.log(focusedResult);
         if (focusedResult.length > 0) {
           $(".result:focus").closest('li').next().focus();   
         }
@@ -265,7 +254,6 @@ function search() {
 
 function goToSong() {
   var url = $(this).data('url');
-  console.log(url)
   $('.new-song input').val(url)
   $('.new-song').submit()
 }

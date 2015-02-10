@@ -29,7 +29,6 @@ Template.player.helpers({
       if (isNaN(width)) {
         return '0%';
       } else {
-        console.log(width);
         return width + '%';
       }
     }else {
@@ -48,11 +47,17 @@ Template.player.helpers({
     var song = Session.get('currentSong');
     if (song) {
       var route = Router.current().url;
-      console.log(route);
       //return "https://twitter.com/home?status=@DRRROPSmusic%0ADamn%20son!%20Where'd%20you%20find%20this?!%0" + route;
       return "https://twitter.com/home?status=@DRRROPSmusic%0ADamn%20son!%20Where'd%20you%20find%20this?!%0Awww.drrrops.com"
     } else {
       return "https://twitter.com/home?status=@DRRROPSmusic%0ADamn%20son!%20Where'd%20you%20find%20this?!%0Awww.drrrops.com"
+    }
+  },
+
+  soundcloud_url: function() {
+    var song = Session.get('currentSong');
+    if (song) {
+      return song.permalink_url;
     }
   }
 
@@ -132,9 +137,7 @@ Template.player.events({
 
   "click .facebook-share": function (event) {
       var link = Router.current().url;
-      console.log(link);
       var href = link;
-      console.log(href);
       FB.ui({
         method: 'share',
         href: 'www.drrrops.com',
